@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,8 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import ua.org.rshu.fmi.mobapp.FMIApplication;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.persistent.entity.Note;
-import ua.org.rshu.fmi.mobapp.service.core.NoteService;
+import ua.org.rshu.fmi.mobapp.persistent.notepadpersistent.entity.Note;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.NoteService;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.impl.NoteEditorActivityImpl;
 import ua.org.rshu.fmi.mobapp.view.util.consts.BundleKeysConst;
 
@@ -74,12 +75,22 @@ public class NoteContentFragmentImpl extends Fragment {
 
     @OnClick(R.id.im_btn_delete_note)
     public void removeNote() {
-        //TODO: provide note service for removing note
-        noteService.openConnection();
-        noteService.remove(mSelectNote.getId());
-        noteService.closeConnection();
-        getActivity().onBackPressed();
-        //TODO:back to list
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Видалення")
+                .setMessage("Видалити нотаток?")
+                .setIcon(R.drawable.ic_remove_circle_black_24dp)
+                .setCancelable(false)
+                .setNegativeButton("Відмінити",
+                        (dialog, id) -> dialog.cancel())
+                .setPositiveButton("Видалити", ((dialog, which) -> {
+                    noteService.openConnection();
+                    noteService.remove(mSelectNote.getId());
+                    noteService.closeConnection();
+                    dialog.cancel();
+                    getActivity().onBackPressed();
+                }));
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

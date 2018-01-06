@@ -20,8 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ua.org.rshu.fmi.mobapp.FMIApplication;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.persistent.entity.Note;
-import ua.org.rshu.fmi.mobapp.service.core.NoteService;
+import ua.org.rshu.fmi.mobapp.persistent.notepadpersistent.entity.Note;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.NoteService;
 import ua.org.rshu.fmi.mobapp.view.activity.main.MainActivityImpl;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorActivity;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorPresenter;
@@ -47,8 +47,8 @@ public class NoteEditorActivityImpl extends AppCompatActivity implements NoteEdi
     private static final String EDITOR_TEXT_KEY = "editorText";
     private static final String TITLE_TEXT_KEY = "titleText";
     private static final String CURRENT_TAB_KEY = "currentTab";
-    private static final String EDITOR_TAB_ID = "Editor";
-    private static final String PREVIEW_TAB_ID = "Preview";
+    private static final String EDITOR_TAB_ID = "Редактор";
+    private static final String PREVIEW_TAB_ID = "Попередній перегляд";
     private static final String MIME_TYPE = "text/html";
     private static final String ENCODING = "charset=UTF-8";
 

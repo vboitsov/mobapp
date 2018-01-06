@@ -2,12 +2,15 @@ package ua.org.rshu.fmi.mobapp.dagger.modules;
 
 import android.support.annotation.NonNull;
 
-import ua.org.rshu.fmi.mobapp.persistent.repository.core.NoteRepository;
-import ua.org.rshu.fmi.mobapp.persistent.repository.core.TagRepository;
-import ua.org.rshu.fmi.mobapp.service.core.NoteService;
-import ua.org.rshu.fmi.mobapp.service.core.TagService;
-import ua.org.rshu.fmi.mobapp.service.core.impl.NoteServiceImpl;
-import ua.org.rshu.fmi.mobapp.service.core.impl.TagServiceImpl;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.repository.FmiRepository;
+import ua.org.rshu.fmi.mobapp.persistent.notepadpersistent.repository.core.NoteRepository;
+import ua.org.rshu.fmi.mobapp.persistent.notepadpersistent.repository.core.TagRepository;
+import ua.org.rshu.fmi.mobapp.service.fmiservices.FmiService;
+import ua.org.rshu.fmi.mobapp.service.fmiservices.imp.FmiServiceImp;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.NoteService;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.TagService;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.impl.NoteServiceImpl;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.impl.TagServiceImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,6 +32,12 @@ public class ServiceModule {
     @Provides
     static TagService provideTagsService(TagRepository tagRepository) {
         return new TagServiceImpl(tagRepository);
+    }
+
+    @NonNull
+    @Provides
+    static FmiService provideFmiService(FmiRepository fmiRepository) {
+        return new FmiServiceImp(fmiRepository);
     }
 
 }

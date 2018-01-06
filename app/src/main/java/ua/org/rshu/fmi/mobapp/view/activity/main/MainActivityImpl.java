@@ -16,7 +16,10 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.noteslist.impl.NotesListFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.credits.CreditsOptionFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.impl.NewsListFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.noteslist.impl.NotesListFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.scheduleoption.ScheduleOptionFragment;
 import ua.org.rshu.fmi.mobapp.view.util.consts.FragmentConst;
 
 public class MainActivityImpl extends AppCompatActivity
@@ -33,18 +36,18 @@ public class MainActivityImpl extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mSavedInstanceState = savedInstanceState;
-        setContentView(ua.org.rshu.fmi.mobapp.R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         setOrientationByUserDeviceConfiguration();
         ButterKnife.bind(this);
         setSupportActionBar(mToolBar);
         ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolBar, ua.org.rshu.fmi.mobapp.R.string.navigation_drawer_open, ua.org.rshu.fmi.mobapp.R.string.navigation_drawer_close);
+                this, mDrawerLayout, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        ((NavigationView) findViewById(ua.org.rshu.fmi.mobapp.R.id.nav_view)).setNavigationItemSelectedListener(this);
+        ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
 
-        NotesListFragmentImpl notesListFragment = new NotesListFragmentImpl();
-        menuStartSelectFragment(notesListFragment, FragmentConst.TAG_NOTES_LIST_FRAGMENT);
+        NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
+        startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
     }
 
     @Override
@@ -64,10 +67,36 @@ public class MainActivityImpl extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (ua.org.rshu.fmi.mobapp.R.id.nav_item_all_notes == id) {
+        if (R.id.nav_item_schedule == id) {
+//            GroupListForScheduleFragmentImpl groupListForScheduleFragment = new GroupListForScheduleFragmentImpl();
+//            startSelectedFragment(groupListForScheduleFragment, "GROUP_LIST_FOR_SCHEDULE_FRAGMENT");
+            ScheduleOptionFragment scheduleOptionFragment = new ScheduleOptionFragment();
+            startSelectedFragment(scheduleOptionFragment, "SCHEDULE_OPTION_TAG");
+        } else
+            if (R.id.nav_item_all_notes == id) {
             NotesListFragmentImpl notesListFragment = new NotesListFragmentImpl();
-            menuStartSelectFragment(notesListFragment, FragmentConst.TAG_NOTES_LIST_FRAGMENT);
+            startSelectedFragment(notesListFragment, FragmentConst.TAG_NOTES_LIST_FRAGMENT);
+        } else if (R.id.nav_item_news == id) {
+            NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
+            startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
+        } else if (R.id.nav_item_learning_proccess == id) {
+            CreditsOptionFragment creditsOptionFragment = new CreditsOptionFragment();
+            startSelectedFragment(creditsOptionFragment, "CREDITS_OPTION_TAG");
         }
+//        else if (R.id.nav_item_teachers == id) {
+//            TeacherListFragmentImpl teachersListFragment = new TeacherListFragmentImpl();
+//            startSelectedFragment(teachersListFragment, "TEACHERS_LIST_FRAGMENT");
+//        }
+//        else if (R.id.nav_item_credits == id) {
+//            GroupListForCreditsFragmentImpl groupListForCreditsFragment = new GroupListForCreditsFragmentImpl();
+//            startSelectedFragment(groupListForCreditsFragment, "GROUPS_LIST_FOR_CREDITS_FRAGMENTS");
+//        } else if (R.id.nav_item_exams == id) {
+//            GroupListForExamsFragmentImpl groupListForExamsFragment = new GroupListForExamsFragmentImpl();
+//            startSelectedFragment(groupListForExamsFragment, "GROUP_LIST_FOR_EXAMS_FRAGMENT");
+//        }
+
+
+
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -89,11 +118,11 @@ public class MainActivityImpl extends AppCompatActivity
      * @param fragment a fragment what we create
      * @param tag      a tag name of fragment
      */
-    private void menuStartSelectFragment(Fragment fragment, String tag) {
+    private void startSelectedFragment(Fragment fragment, String tag) {
         if (mSavedInstanceState == null) {
             fragmentManager.beginTransaction()
-                    .replace(ua.org.rshu.fmi.mobapp.R.id.constraint_container, fragment, tag)
-//                    .addToBackStack(tag)
+                    .replace(R.id.constraint_container, fragment, tag)
+//                    .addToBackStack(null)
                     .commit();
         }
     }

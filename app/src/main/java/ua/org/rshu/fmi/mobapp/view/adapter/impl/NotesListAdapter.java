@@ -8,16 +8,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.persistent.entity.Note;
+import ua.org.rshu.fmi.mobapp.persistent.notepadpersistent.entity.Note;
 import ua.org.rshu.fmi.mobapp.view.adapter.DataPostSetAdapter;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.noteslist.NotesListFragment;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.noteslist.NotesListPresenter;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.noteslist.NotesListFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.noteslist.NotesListPresenter;
 
 
 /**
@@ -28,7 +29,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
 
     private NotesListFragment mAllNotesFragment;
 
-    private List<Note> mNotes;
+    private List<Note> mNotes = new ArrayList<>();
 
     private NotesListPresenter mNoteListPresenter;
 
@@ -70,7 +71,6 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
     }
 
 
-    //TODO: maybe create one class for it.
     class NoteViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_title_note) TextView tvTitle;
 

@@ -16,8 +16,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.service.core.NoteService;
-import ua.org.rshu.fmi.mobapp.service.form.NoteForm;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.core.NoteService;
+import ua.org.rshu.fmi.mobapp.service.notepadservices.form.NoteForm;
 import ua.org.rshu.fmi.mobapp.view.activity.main.MainActivityImpl;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorActivity;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorPresenter;
@@ -82,7 +82,7 @@ class NoteEditorPresenterImpl implements NoteEditorPresenter {
         Flowable.just(noteForm)
                 .filter(noteForm1 -> {
                     if (TextUtils.isEmpty(noteForm1.getTitle())){
-                        Snackbar.make(((AppCompatActivity) mNoteEditorActivity).findViewById(R.id.relative_layout_container_activity_note_editor),"Fill the title", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(((AppCompatActivity) mNoteEditorActivity).findViewById(R.id.relative_layout_container_activity_note_editor),"Заповніть назву", Snackbar.LENGTH_LONG).show();
                         return false;
                     }
                     return true;

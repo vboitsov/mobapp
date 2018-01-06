@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:padding="8dp"
+    tools:context="ua.org.rshu.fmi.mobapp.view.fragment.credits.CreditsOptionFragment">
+
+
+    <Button
+        android:id="@+id/button_group_credits"
+        android:text="Заліки за групою"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/ic_people_outline_black_24dp"
+        android:padding="50dp"
+        android:background="#FFF"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/button_group_exams"
+        android:text="Екзамени за групою"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/ic_group_black_24dp"
+        android:padding="50dp"
+        android:background="#FFF"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/button_teacher_credits"
+        android:text="Заліки за викладчем"
+        android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+        android:background="#FFF"
+        android:padding="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+    <Button
+        android:id="@+id/button_teacher_exams"
+        android:text="Екзамени за викладчем"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:background="#FFF"
+        android:padding="50dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>

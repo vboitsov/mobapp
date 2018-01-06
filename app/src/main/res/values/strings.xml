@@ -35,7 +35,7 @@
     <string name="dialog_fragment_notebook_selection_get_notebook">Get Notebook</string>
     <string name="dialog_fragment_notebook_selection_create_notebook">Create notebook</string>
     <string name="dialog_fragment_notebook_selection_choose_notebook">Choose notebook</string>
-    <string name="dialog_fragment_creating_notebook_cancel" >Cancel</string>
+    <string name="dialog_fragment_creating_notebook_cancel">Cancel</string>
     <string name="dialog_fragment_notebook_selection_reset_notebook">reset notebook</string>
 
     <!--
@@ -73,6 +73,7 @@
     <string name="hint_enter_your_notebook_name">Enter your notebook name</string>
     <string name="hint_dialog_notebook_selection_notebook_not_choose">Notebook not chosen</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
