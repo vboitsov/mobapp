@@ -41,6 +41,10 @@ public abstract class ExamsListFragmentImpl extends EntitiesListWithProgressbarF
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_credits_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
+
+        if(mExamsListPresenter != null) {
+            mExamsListPresenter.bindView(this);
+        }
         setUpToolbar();
         initRecyclerView();
 
@@ -48,13 +52,6 @@ public abstract class ExamsListFragmentImpl extends EntitiesListWithProgressbarF
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mExamsListPresenter != null) {
-            mExamsListPresenter.bindView(this);
-        }
-    }
 
     @Override
     public void onPause() {

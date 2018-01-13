@@ -46,6 +46,10 @@ public abstract class GroupsListFragmentImpl extends EntitiesListWithProgressbar
         FMIApplication.getsAppComponent().inject(this);
         System.out.println("Presenter:" + (mGroupsListPresenter == null));
 
+        if(mGroupsListPresenter != null) {
+            mGroupsListPresenter.bindView(this);
+        }
+
         setUpToolbar();
         initRecyclerView();
 
@@ -53,13 +57,7 @@ public abstract class GroupsListFragmentImpl extends EntitiesListWithProgressbar
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mGroupsListPresenter != null) {
-            mGroupsListPresenter.bindView(this);
-        }
-    }
+
 
     @Override
     public void onPause() {

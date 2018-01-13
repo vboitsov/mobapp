@@ -46,19 +46,16 @@ public class NewsListFragmentImpl extends EntitiesListWithProgressbarFragmentImp
         View rootView = inflater.inflate(R.layout.fragment_news_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
         FMIApplication.getsAppComponent().inject(this);
+        if(mNewsListPresenter != null) {
+            mNewsListPresenter.bindView(this);
+        }
         setUpToolbar();
 
         initRecyclerView();
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mNewsListPresenter != null) {
-            mNewsListPresenter.bindView(this);
-        }
-    }
+
 
     @Override
     public void onPause() {

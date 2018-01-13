@@ -67,18 +67,12 @@ public class CoursesListFragmentImpl extends EntitiesListWithProgressbarFragment
         mUnbinder = ButterKnife.bind(this, rootView);
         FMIApplication.getsAppComponent().inject(this);
 
-        System.out.println(group);
-        setUpToolbar();
-        initRecyclerView();
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         if(mCoursesListPresenter != null) {
             mCoursesListPresenter.bindView(this);
         }
+        setUpToolbar();
+        initRecyclerView();
+        return rootView;
     }
 
     @Override

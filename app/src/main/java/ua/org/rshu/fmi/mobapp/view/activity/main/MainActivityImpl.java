@@ -78,6 +78,7 @@ public class MainActivityImpl extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        clearBackStack();
         if (R.id.nav_item_schedule == id) {
 //            GroupListForScheduleFragmentImpl groupListForScheduleFragment = new GroupListForScheduleFragmentImpl();
 //            startSelectedFragment(groupListForScheduleFragment, "GROUP_LIST_FOR_SCHEDULE_FRAGMENT");
@@ -158,5 +159,12 @@ public class MainActivityImpl extends AppCompatActivity
         }
     }
 
+    public void clearBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
 
 }

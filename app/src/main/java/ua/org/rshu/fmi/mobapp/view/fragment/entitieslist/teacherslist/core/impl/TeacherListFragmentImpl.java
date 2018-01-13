@@ -50,18 +50,13 @@ class TeacherListFragmentImpl extends EntitiesListWithProgressbarFragmentImpl im
         View rootView = inflater.inflate(R.layout.fragment_teachers_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
         FMIApplication.getsAppComponent().inject(this);
+        if(mTeacherListPresenter != null) {
+            mTeacherListPresenter.bindView(this);
+        }
         setUpToolbar();
         initRecyclerView();
 
         return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mTeacherListPresenter != null) {
-            mTeacherListPresenter.bindView(this);
-        }
     }
 
     @Override

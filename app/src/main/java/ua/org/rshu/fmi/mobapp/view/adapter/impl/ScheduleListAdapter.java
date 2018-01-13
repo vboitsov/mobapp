@@ -59,7 +59,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         System.out.println(day);
 
-
+        holder.lessonContainerLinearLayout.removeAllViews();
         for(Lesson lesson: day.getLessons()) {
             View lessonView;
             if (!lesson.isHalfGrouped()) {

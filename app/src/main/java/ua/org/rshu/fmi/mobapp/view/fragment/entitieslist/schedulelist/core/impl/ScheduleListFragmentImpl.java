@@ -2,7 +2,6 @@ package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.schedulelist.core.impl
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,18 +42,14 @@ public class ScheduleListFragmentImpl extends EntitiesListWithProgressbarFragmen
         View rootView = inflater.inflate(R.layout.fragment_schedule_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
 //        FMIApplication.getsAppComponent().inject(this);
-        setUpToolbar();
-        initRecyclerView();
-
-        return rootView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         if(mScheduleListPresenter != null) {
             mScheduleListPresenter.bindView(this);
         }
+
+
+        initRecyclerView();
+
+        return rootView;
     }
 
     @Override
@@ -79,13 +74,7 @@ public class ScheduleListFragmentImpl extends EntitiesListWithProgressbarFragmen
         Logger.d("Recycler view is updated");
     }
 
-    private void setUpToolbar() {
-        setHasOptionsMenu(true);
-        if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Розклад");
-        }
-    }
+
 
 
     /**

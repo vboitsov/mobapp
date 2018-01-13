@@ -19,7 +19,7 @@ public class TeacherListForCreditsFragmentImpl extends TeacherListFragmentImpl {
         TeacherCreditsListFragmentImpl examsListFragment = new TeacherCreditsListFragmentImpl();
 
         Bundle bundle = new Bundle();
-        bundle.putLong(BundleKeysConst.BUNDLE_GROUP_ID_KEY, teacher.getTeacherId());
+        bundle.putLong(BundleKeysConst.BUNDLE_TEACHER_ID_KEY, teacher.getTeacherId());
         examsListFragment.setArguments(bundle);
 
         getActivity().getSupportFragmentManager()

@@ -39,6 +39,10 @@ public abstract class CreditsListFragmentImpl extends EntitiesListWithProgressba
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_credits_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
+        if(mCreditsListPresenter != null) {
+            mCreditsListPresenter.bindView(this);
+        }
+
         setUpToolbar();
         initRecyclerView();
 
@@ -46,13 +50,7 @@ public abstract class CreditsListFragmentImpl extends EntitiesListWithProgressba
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(mCreditsListPresenter != null) {
-            mCreditsListPresenter.bindView(this);
-        }
-    }
+
 
     @Override
     public void onPause() {
