@@ -1,4 +1,4 @@
-package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist;
+package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core;
 
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListWithProgressbarFragment;
 
@@ -8,9 +8,4 @@ import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListWithPr
 
 public interface CreditsListFragment extends EntitiesListWithProgressbarFragment {
 
-    long getGroupId();
-
-//    void showProgressBar();
-//
-//    void hideProgressBar();
 }

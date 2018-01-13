@@ -1,6 +1,8 @@
 package ua.org.rshu.fmi.mobapp.view.activity.main;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,15 +13,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.view.fragment.credits.CreditsOptionFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.courseauth.CourseRequestInfoFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.courseauth.EmailAuthFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.creditsoption.CreditsOptionFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.impl.NewsListFragmentImpl;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.noteslist.impl.NotesListFragmentImpl;
 import ua.org.rshu.fmi.mobapp.view.fragment.scheduleoption.ScheduleOptionFragment;
+import ua.org.rshu.fmi.mobapp.view.util.consts.BundleKeysConst;
 import ua.org.rshu.fmi.mobapp.view.util.consts.FragmentConst;
 
 public class MainActivityImpl extends AppCompatActivity
@@ -46,8 +52,13 @@ public class MainActivityImpl extends AppCompatActivity
         mToggle.syncState();
         ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
 
-        NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
-        startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
+
+        if (getIntent().hasExtra(BundleKeysConst.BUNDLE_FROM_NOTE_EDITOR)) {
+            openNotesList();
+        } else {
+            NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
+            startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
+        }
     }
 
     @Override
@@ -72,16 +83,15 @@ public class MainActivityImpl extends AppCompatActivity
 //            startSelectedFragment(groupListForScheduleFragment, "GROUP_LIST_FOR_SCHEDULE_FRAGMENT");
             ScheduleOptionFragment scheduleOptionFragment = new ScheduleOptionFragment();
             startSelectedFragment(scheduleOptionFragment, "SCHEDULE_OPTION_TAG");
-        } else
-            if (R.id.nav_item_all_notes == id) {
-            NotesListFragmentImpl notesListFragment = new NotesListFragmentImpl();
-            startSelectedFragment(notesListFragment, FragmentConst.TAG_NOTES_LIST_FRAGMENT);
+        } else if (R.id.nav_item_all_notes == id) {
+                openNotesList();
         } else if (R.id.nav_item_news == id) {
-            NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
-            startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
+            openNewsList();
         } else if (R.id.nav_item_learning_proccess == id) {
             CreditsOptionFragment creditsOptionFragment = new CreditsOptionFragment();
             startSelectedFragment(creditsOptionFragment, "CREDITS_OPTION_TAG");
+        } else if (R.id.nav_item_courses == id) {
+                openCourses();
         }
 //        else if (R.id.nav_item_teachers == id) {
 //            TeacherListFragmentImpl teachersListFragment = new TeacherListFragmentImpl();
@@ -126,4 +136,27 @@ public class MainActivityImpl extends AppCompatActivity
                     .commit();
         }
     }
+
+    private void openNotesList() {
+        NotesListFragmentImpl notesListFragment = new NotesListFragmentImpl();
+        startSelectedFragment(notesListFragment, FragmentConst.TAG_NOTES_LIST_FRAGMENT);
+    }
+
+    private void openNewsList() {
+        NewsListFragmentImpl newsListFragment = new NewsListFragmentImpl();
+        startSelectedFragment(newsListFragment, "NEWS_LIST_FRAGMENT");
+    }
+
+    private void openCourses() {
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        if (TextUtils.isEmpty(sharedPref.getString(BundleKeysConst.BUNDLE_TOKEN_KEY, null))) {
+            EmailAuthFragment emailAuthFragment = new EmailAuthFragment();
+            startSelectedFragment(emailAuthFragment, "EMAIL_AUTH_TAG");
+        } else {
+            CourseRequestInfoFragment courseRequestInfoFragment = new CourseRequestInfoFragment();
+            startSelectedFragment(courseRequestInfoFragment, "COURSE_INFO_FRAGMENT");
+        }
+    }
+
+
 }

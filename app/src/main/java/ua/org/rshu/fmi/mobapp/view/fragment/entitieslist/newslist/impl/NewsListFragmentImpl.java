@@ -64,15 +64,21 @@ public class NewsListFragmentImpl extends EntitiesListWithProgressbarFragmentImp
     public void onPause() {
         super.onPause();
         mNewsListPresenter.unbindView();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
+        mNewsListPresenter.disposePagination();
+        mNewsListPresenter = null;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-        mNewsListPresenter.disposePagination();
+//        if (mUnbinder != null) {
+//            mUnbinder.unbind();
+//        }
+//        mNewsListPresenter.disposePagination();
+//        mNewsListPresenter = null;
     }
 
 

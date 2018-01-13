@@ -51,7 +51,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsVi
         Picasso.with(holder.newsPicImageView.getContext()).load(news.getPic()).into(holder.newsPicImageView);
         System.out.println("PICTURE LINK:" + news.getPic());
 
-
         holder.newsTitleTextView.setText(news.getTitle());
         holder.newsDateTextView.setText(news.getDate());
         holder.newsTextTextView.setText(news.getText());

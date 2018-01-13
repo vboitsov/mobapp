@@ -11,7 +11,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.forschedule.GroupListForScheduleFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.GroupListForScheduleFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.teacherslist.forschedule.TeacherListForScheduleFragmentImpl;
 
 
 public class ScheduleOptionFragment extends Fragment {
@@ -55,19 +56,19 @@ public class ScheduleOptionFragment extends Fragment {
 
     @OnClick(R.id.button_teacher_schedule)
     public void openTeacherListForSchedule() {
-//        TeacherListFragmentImpl teachersListFragment = new TeacherListFragmentImpl();
-//        getActivity().getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.constraint_container, teachersListFragment, "TEACHERS_LIST_FRAGMENT")
-//                .addToBackStack(null)
-//                .commit();
+        TeacherListForScheduleFragmentImpl teachersListFragment = new TeacherListForScheduleFragmentImpl();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.constraint_container, teachersListFragment, "TEACHERS_LIST_FRAGMENT")
+                .addToBackStack(null)
+                .commit();
     }
 
     private void setUpToolbar() {
         setHasOptionsMenu(true);
         if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Розклад пар");
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Розклад");
         }
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Exam;
 import ua.org.rshu.fmi.mobapp.service.fmiservices.FmiService;
 import ua.org.rshu.fmi.mobapp.util.PaginationArgs;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.examslist.core.ExamsListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.examslist.core.impl.ExamsListPresenterImpl;
 
 /**
@@ -30,11 +29,14 @@ public class GroupExamsListPresenterImpl extends ExamsListPresenterImpl {
         showProgressBarFromMainThread();
         while (!isConnected) {
             try {
-                examsList = mFmiService.getGroupExams(((ExamsListFragment) mEntitiesListFragment).getGroupId(),
+                examsList = mFmiService.getGroupExams(((GroupExamsListFragmentImpl) mEntitiesListFragment).getGroupId(),
                         paginationArgs).execute().body();
                 isConnected = true;
-            } catch (NullPointerException| IOException e) {
+            } catch (NullPointerException | IOException e) {
                 e.printStackTrace();
+                if (mEntitiesListFragment == null) {
+                    return new ArrayList<>();
+                }
             }
         }
         hideProgressBarFromMainThread();

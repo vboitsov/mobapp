@@ -19,14 +19,17 @@ public class TeacherScheduleListFragmentImpl extends ScheduleListFragmentImpl {
 
     @Inject TeacherScheduleListPresenterImpl mTeacherScheduleListPresenter;
 
+    private long teacherId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        teacherId = getArguments().getLong(BundleKeysConst.BUNDLE_TEACHER_ID_KEY);
         FMIApplication.getsAppComponent().inject(this);
         mScheduleListPresenter = mTeacherScheduleListPresenter;
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public long getTeacherId() {
-        return getArguments().getLong(BundleKeysConst.BUNDLE_TEACHER_ID_KEY);
+        return teacherId;
     }
 }

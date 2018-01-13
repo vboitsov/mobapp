@@ -33,8 +33,11 @@ public class GroupScheduleListPresenterImpl extends ScheduleListPresenterImpl {
                         paginationArgs).execute().body();
                 System.out.println("load more credits: " + daysList);
                 isConnected = true;
-            } catch (NullPointerException| IOException e) {
+            } catch (NullPointerException | IOException e) {
                 e.printStackTrace();
+                if (mEntitiesListFragment == null) {
+                    return new ArrayList<>();
+                }
             }
         }
         hideProgressBarFromMainThread();

@@ -9,62 +9,76 @@ import ua.org.rshu.fmi.mobapp.persistent.BasicEntity;
 
 public class Lesson implements BasicEntity {
 
-    private final int lesson_order;
+    private final int lessonOrder;
 
-    private final boolean isHalfGrouped;
+    private final boolean halfGrouped;
 
-    private final String first_subject_name;
+    private final String firstSubjectName;
 
-    private final String first_subject_group_or_teacher_name;
+    private final String firstSubjectGroupOrTeacherName;
 
-    private final String first_subject_audience;
+    private final String firstSubjectAudience;
 
-    private final String second_subject_name;
+    private final String secondSubjectName;
 
-    private final String second_subject_group_or_teacher_name;
+    private final String secondSubjectGroupOrTeacherName;
 
-    private final String second_subject_audience;
+    private final String secondSubjectAudience;
 
-    public Lesson(int lesson_order, boolean isHalfGrouped, String first_subject_name, String first_subject_group_or_teacher_name, String first_subject_audience, String second_subject_name, String second_subject_group_or_teacher_name, String second_subject_audience) {
-        this.lesson_order = lesson_order;
-        this.isHalfGrouped = isHalfGrouped;
-        this.first_subject_name = first_subject_name;
-        this.first_subject_group_or_teacher_name = first_subject_group_or_teacher_name;
-        this.first_subject_audience = first_subject_audience;
-        this.second_subject_name = second_subject_name;
-        this.second_subject_group_or_teacher_name = second_subject_group_or_teacher_name;
-        this.second_subject_audience = second_subject_audience;
+    public Lesson(int lessonOrder, boolean halfGrouped, String firstSubjectName, String firstSubjectGroupOrTeacherName, String firstSubjectAudience, String secondSubjectName, String secondSubjectGroupOrTeacherName, String secondSubjectAudience) {
+        this.lessonOrder = lessonOrder;
+        this.halfGrouped = halfGrouped;
+        this.firstSubjectName = firstSubjectName;
+        this.firstSubjectGroupOrTeacherName = firstSubjectGroupOrTeacherName;
+        this.firstSubjectAudience = firstSubjectAudience;
+        this.secondSubjectName = secondSubjectName;
+        this.secondSubjectGroupOrTeacherName = secondSubjectGroupOrTeacherName;
+        this.secondSubjectAudience = secondSubjectAudience;
     }
 
-    public int getLesson_order() {
-        return lesson_order;
+    public int getLessonOrder() {
+        return lessonOrder;
     }
 
     public boolean isHalfGrouped() {
-        return isHalfGrouped;
+        return halfGrouped;
     }
 
-    public String getFirst_subject_name() {
-        return first_subject_name;
+    public String getFirstSubjectName() {
+        return firstSubjectName;
     }
 
-    public String getFirst_subject_group_or_teacher_name() {
-        return first_subject_group_or_teacher_name;
+    public String getFirstSubjectGroupOrTeacherName() {
+        return firstSubjectGroupOrTeacherName;
     }
 
-    public String getFirst_subject_audience() {
-        return first_subject_audience;
+    public String getFirstSubjectAudience() {
+        return firstSubjectAudience;
     }
 
-    public String getSecond_subject_name() {
-        return second_subject_name;
+    public String getSecondSubjectName() {
+        return secondSubjectName;
     }
 
-    public String getSecond_subject_group_or_teacher_name() {
-        return second_subject_group_or_teacher_name;
+    public String getSecondSubjectGroupOrTeacherName() {
+        return secondSubjectGroupOrTeacherName;
     }
 
-    public String getSecond_subject_audience() {
-        return second_subject_audience;
+    public String getSecondSubjectAudience() {
+        return secondSubjectAudience;
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "lessonOrder=" + lessonOrder +
+                ", halfGrouped=" + halfGrouped +
+                ", firstSubjectName='" + firstSubjectName + '\'' +
+                ", firstSubjectGroupOrTeacherName='" + firstSubjectGroupOrTeacherName + '\'' +
+                ", firstSubjectAudience='" + firstSubjectAudience + '\'' +
+                ", secondSubjectName='" + secondSubjectName + '\'' +
+                ", secondSubjectGroupOrTeacherName='" + secondSubjectGroupOrTeacherName + '\'' +
+                ", secondSubjectAudience='" + secondSubjectAudience + '\'' +
+                '}';
     }
 }

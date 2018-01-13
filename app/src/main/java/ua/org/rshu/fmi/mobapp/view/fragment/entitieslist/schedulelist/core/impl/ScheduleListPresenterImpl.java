@@ -1,14 +1,9 @@
 package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.schedulelist.core.impl;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Day;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListWithProgressbarPresenterImpl;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.CreditsListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.schedulelist.core.ScheduleListPresenter;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListPresenterImpl;
 
 /**
  * Created by vb on 04/01/2018.

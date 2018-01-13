@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="4"
     android:padding="8dp"
-    tools:context="ua.org.rshu.fmi.mobapp.view.fragment.credits.CreditsOptionFragment">
+    tools:context="ua.org.rshu.fmi.mobapp.view.fragment.creditsoption.CreditsOptionFragment">
 
 
     <Button

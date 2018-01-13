@@ -4,6 +4,12 @@ import dagger.Module;
 import dagger.Provides;
 import ua.org.rshu.fmi.mobapp.service.fmiservices.FmiService;
 import ua.org.rshu.fmi.mobapp.service.notepadservices.core.NoteService;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.courselist.CoursesListPresenter;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.courselist.impl.CoursesListPresenterImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.forgroup.GroupCreditsListPresenterImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.forteacher.TeacherCreditsListPresenterImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.examslist.forgroup.GroupExamsListPresenterImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.examslist.forteacher.TeacherExamsListPresenterImpl;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.core.GroupsListPresenter;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.core.impl.GroupsListPresenterImpl;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.NewsListPresenter;
@@ -40,25 +46,39 @@ public class PresenterModule {
     static GroupsListPresenter provideGroupsListPresenter(FmiService fmiService) {
         return new GroupsListPresenterImpl(fmiService);
     }
-//
-//    @Provides
-//    static CreditsListPresenter provideCreditsListPresenter(FmiService fmiService) {
-//        return new CreditsListPresenterImpl(fmiService);
-//    }
 
-//    @Provides
-//    static ExamsListPresenter provideExamsListPresenter(FmiService fmiService) {
-//        return new ExamsListPresenterImpl(fmiService);
-//    }
+    @Provides
+    static GroupExamsListPresenterImpl provideGroupExamsListPresenter(FmiService fmiService) {
+        return new GroupExamsListPresenterImpl(fmiService);
+    }
+
+    @Provides
+    static TeacherExamsListPresenterImpl provideTeachersListPresenter(FmiService fmiService) {
+        return new TeacherExamsListPresenterImpl(fmiService);
+    }
+
+    @Provides
+    static GroupCreditsListPresenterImpl provideGroupCreditsListPresenter(FmiService fmiService) {
+        return new GroupCreditsListPresenterImpl(fmiService);
+    }
+
+    @Provides
+    static TeacherCreditsListPresenterImpl provideTeacherCreditsListPresenter(FmiService fmiService) {
+        return new TeacherCreditsListPresenterImpl(fmiService);
+    }
 
     @Provides
     static GroupScheduleListPresenterImpl provideGroupSchedulePresenter (FmiService fmiService) {
         return new GroupScheduleListPresenterImpl(fmiService);
     }
 
-
     @Provides
     static TeacherScheduleListPresenterImpl provideTeacherSchedulePresenter (FmiService fmiService) {
         return new TeacherScheduleListPresenterImpl(fmiService);
+    }
+
+    @Provides
+    static CoursesListPresenter provideCoursesListPresenter (FmiService fmiService) {
+        return new CoursesListPresenterImpl(fmiService);
     }
 }

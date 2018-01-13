@@ -1,4 +1,4 @@
-package ua.org.rshu.fmi.mobapp.view.fragment.credits;
+package ua.org.rshu.fmi.mobapp.view.fragment.creditsoption;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.forcredits.GroupListForCreditsFragmentImpl;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.forexams.GroupListForExamsFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.GroupListForCreditsFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.GroupListForExamsFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.teacherslist.forcredtis.TeacherListForCreditsFragmentImpl;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.teacherslist.forexams.TeacherListForExamsFragmentImpl;
 
 
 public class CreditsOptionFragment extends Fragment {
@@ -22,13 +24,11 @@ public class CreditsOptionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_credits_option, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
 
@@ -53,7 +53,6 @@ public class CreditsOptionFragment extends Fragment {
                 .replace(R.id.constraint_container, groupListForCreditsFragment, "GROUPS_LIST_FOR_CREDITS_FRAGMENTS")
                 .addToBackStack(null)
                 .commit();
-
     }
 
     @OnClick(R.id.button_group_exams)
@@ -64,7 +63,26 @@ public class CreditsOptionFragment extends Fragment {
                 .replace(R.id.constraint_container, groupListForExamsFragment, "GROUP_LIST_FOR_EXAMS_FRAGMENT")
                 .addToBackStack(null)
                 .commit();
+    }
 
+    @OnClick(R.id.button_teacher_credits)
+    public void openTeacherListForCredits() {
+        TeacherListForCreditsFragmentImpl teacherListForCreditsFragment = new TeacherListForCreditsFragmentImpl();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.constraint_container, teacherListForCreditsFragment, "TEACHER_LIST_FOR_CREDITS_FRAGMENTS")
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @OnClick(R.id.button_teacher_exams)
+    public void openTeacherListForExams() {
+        TeacherListForExamsFragmentImpl teacherListForExamsFragment = new TeacherListForExamsFragmentImpl();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.constraint_container, teacherListForExamsFragment, "TEACHER_LIST_FOR_EXAMS_FRAGMENT")
+                .addToBackStack(null)
+                .commit();
     }
 
     private void setUpToolbar() {
@@ -74,6 +92,4 @@ public class CreditsOptionFragment extends Fragment {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Навчальний процес");
         }
     }
-
-
 }

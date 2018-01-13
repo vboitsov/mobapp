@@ -20,4 +20,13 @@ public final class BundleKeysConst {
     public static final String BUNDLE_GROUP_ID_KEY = "groupIdObject";
 
     public static final String BUNDLE_TEACHER_ID_KEY = "teacherIdObject";
+
+    public static final String BUNDLE_EMAIL_KEY = "emailKey";
+
+    public static final String BUNDLE_TOKEN_KEY = "tokenKey";
+
+    public static final String BUNDLE_COURSES_ARRAY_KEY = "coursesArrayKey";
+
+    public static final String BUNDLE_FROM_NOTE_EDITOR = "fromNoteEditor";
+
 }

@@ -1,7 +1,8 @@
-package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.impl;
+package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core.impl;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,25 +11,21 @@ import android.view.ViewGroup;
 
 import com.orhanobut.logger.Logger;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ua.org.rshu.fmi.mobapp.R;
 import ua.org.rshu.fmi.mobapp.view.adapter.impl.CreditsListAdapter;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListWithProgressbarFragmentImpl;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.CreditsListFragment;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.CreditsListPresenter;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core.CreditsListFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core.CreditsListPresenter;
 import ua.org.rshu.fmi.mobapp.view.util.consts.BundleKeysConst;
 
-public class CreditsListFragmentImpl extends EntitiesListWithProgressbarFragmentImpl implements CreditsListFragment {
+public abstract class CreditsListFragmentImpl extends EntitiesListWithProgressbarFragmentImpl implements CreditsListFragment {
 
     @BindView(R.id.recycler_view_credits_list) RecyclerView mCreditsRecyclerView;
 
-//    @BindView(R.id.progress_bar) ProgressBar mProgressBar;
-
-    @Inject CreditsListPresenter mCreditsListPresenter;
+    protected CreditsListPresenter mCreditsListPresenter;
 
     public static final String TOOLBAR_TITLE = "Credits";
 
@@ -42,8 +39,7 @@ public class CreditsListFragmentImpl extends EntitiesListWithProgressbarFragment
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_credits_list, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
-//        FMIApplication.getsAppComponent().inject(this);
-//        setUpToolbar();
+        setUpToolbar();
         initRecyclerView();
 
         System.out.println(getArguments().getLong(BundleKeysConst.BUNDLE_GROUP_ID_KEY));
@@ -81,20 +77,14 @@ public class CreditsListFragmentImpl extends EntitiesListWithProgressbarFragment
 
     }
 
-    @Override
-    public long getGroupId() {
-        return getArguments().getLong(BundleKeysConst.BUNDLE_GROUP_ID_KEY);
+    private void setUpToolbar() {
+        setHasOptionsMenu(true);
+        if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Заліки");
+        }
     }
 
-//    @Override
-//    public void showProgressBar() {
-//        mProgressBar.setVisibility(ProgressBar.VISIBLE);
-//    }
-//
-//    @Override
-//    public void hideProgressBar() {
-//        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-//    }
 
     /**
      * A method which initializes recycler view with data

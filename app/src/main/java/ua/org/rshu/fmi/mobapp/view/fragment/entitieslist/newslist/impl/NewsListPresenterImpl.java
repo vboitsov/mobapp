@@ -1,8 +1,5 @@
 package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.impl;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +9,7 @@ import ua.org.rshu.fmi.mobapp.service.fmiservices.FmiService;
 import ua.org.rshu.fmi.mobapp.util.PaginationArgs;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListWithProgressbarPresenterImpl;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.NewsListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.newslist.NewsListPresenter;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListPresenterImpl;
 
 /**
  * Created by vb on 17/11/2017.
@@ -49,8 +44,11 @@ public class NewsListPresenterImpl extends EntitiesListWithProgressbarPresenterI
                 newsList = mFmiService.getNews(paginationArgs).execute().body();
                 System.out.println("load more news: " + newsList);
                 isConnected = true;
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
+                if (mEntitiesListFragment == null) {
+                    return new ArrayList<>();
+                }
             }
         }
         hideProgressBarFromMainThread();

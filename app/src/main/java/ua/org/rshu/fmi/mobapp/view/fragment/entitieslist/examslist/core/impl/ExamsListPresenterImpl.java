@@ -21,34 +21,5 @@ public abstract class ExamsListPresenterImpl extends EntitiesListWithProgressbar
         mEntitiesListFragment = null;
     }
 
-//    @Override
-//    protected List<Exam> loadMoreForPagination(PaginationArgs paginationArgs) {
-//        boolean isConnected = false;
-//        List<Exam> examsList = new ArrayList<>();
-//
-//        showProgressBarFromMainThread();
-//        while (!isConnected) {
-//            try {
-//                examsList = mFmiService.getT(((ExamsListFragment) mEntitiesListFragment).getGroupId(),
-//                        paginationArgs).execute().body();
-//                isConnected = true;
-//            } catch (NullPointerException| IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        hideProgressBarFromMainThread();
-//        return examsList;
-//    }
 
-//    protected void showProgressBarFromMainThread() {
-//        Handler mainHandler = new Handler(Looper.getMainLooper());
-//        Runnable myRunnable = () -> ((ExamsListFragment) mEntitiesListFragment).showProgressBar();
-//        mainHandler.post(myRunnable);
-//    }
-//
-//    protected void hideProgressBarFromMainThread() {
-//        Handler mainHandler = new Handler(Looper.getMainLooper());
-//        Runnable myRunnable = () -> ((ExamsListFragment) mEntitiesListFragment).hideProgressBar();
-//        mainHandler.post(myRunnable);
-//    }
 }

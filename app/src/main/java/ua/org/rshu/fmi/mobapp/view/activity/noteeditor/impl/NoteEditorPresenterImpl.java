@@ -21,6 +21,7 @@ import ua.org.rshu.fmi.mobapp.service.notepadservices.form.NoteForm;
 import ua.org.rshu.fmi.mobapp.view.activity.main.MainActivityImpl;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorActivity;
 import ua.org.rshu.fmi.mobapp.view.activity.noteeditor.NoteEditorPresenter;
+import ua.org.rshu.fmi.mobapp.view.util.consts.BundleKeysConst;
 import ua.org.rshu.fmi.mobapp.view.util.markdownconverter.MarkdownConverter;
 import ua.org.rshu.fmi.mobapp.view.util.markdownconverter.impl.MarkdownConverterImpl;
 
@@ -92,7 +93,9 @@ class NoteEditorPresenterImpl implements NoteEditorPresenter {
                 .doOnNext(stringOptional -> mNoteService.closeConnection())
                 .filter(stringOptional -> {
                     if (stringOptional.isPresent()){
-                        ((AppCompatActivity) mNoteEditorActivity).startActivity(new Intent(((AppCompatActivity) mNoteEditorActivity), MainActivityImpl.class));
+                        Intent intent = new Intent(((AppCompatActivity) mNoteEditorActivity), MainActivityImpl.class);
+                        intent.putExtra(BundleKeysConst.BUNDLE_FROM_NOTE_EDITOR, BundleKeysConst.BUNDLE_FROM_NOTE_EDITOR);
+                        ((AppCompatActivity) mNoteEditorActivity).startActivity(intent);
                         ((AppCompatActivity) mNoteEditorActivity).finish();
                         return false;
                     }
@@ -121,7 +124,9 @@ class NoteEditorPresenterImpl implements NoteEditorPresenter {
                 .doOnNext(stringOptional -> mNoteService.closeConnection())
                 .filter(isUpdated -> {
                     if (isUpdated){
-                        ((AppCompatActivity) mNoteEditorActivity).startActivity(new Intent(((AppCompatActivity) mNoteEditorActivity), MainActivityImpl.class));
+                        Intent intent = new Intent(((AppCompatActivity) mNoteEditorActivity), MainActivityImpl.class);
+                        intent.putExtra(BundleKeysConst.BUNDLE_FROM_NOTE_EDITOR, BundleKeysConst.BUNDLE_FROM_NOTE_EDITOR);
+                        ((AppCompatActivity) mNoteEditorActivity).startActivity(intent);
                         ((AppCompatActivity) mNoteEditorActivity).finish();
                         return false;
                     }

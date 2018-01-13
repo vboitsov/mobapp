@@ -3,10 +3,15 @@ package ua.org.rshu.fmi.mobapp.persistent.fmipersistent.repository.impl;
 import java.util.ArrayList;
 
 import retrofit2.Call;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.CodeAuthResponse;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Course;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.CourseRequestForm;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Credit;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Day;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.EmailAuthResponse;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Exam;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Group;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.MakeRequestResponse;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.News;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Teacher;
 import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.repository.FmiRepository;
@@ -65,5 +70,30 @@ public class FmiRepositoryImpl implements FmiRepository {
     @Override
     public Call<ArrayList<Exam>> getTeacherExams(long teacherId, PaginationArgs paginationArgs) {
         return fmiApi.getTeacherExams(teacherId, paginationArgs.offset, paginationArgs.limit);
+    }
+
+    @Override
+    public Call<EmailAuthResponse> emailAuth(String email) {
+        return fmiApi.emailAuth(email);
+    }
+
+    @Override
+    public Call<CodeAuthResponse> codeAuth(int code) {
+        return fmiApi.codeAuth(code);
+    }
+
+    @Override
+    public Call<CourseRequestForm> getCourseRequestForm(String token) {
+        return fmiApi.getCourseRequestForm(token);
+    }
+
+    @Override
+    public Call<ArrayList<Course>> getListOfCourses(long groupId, PaginationArgs paginationArgs) {
+        return fmiApi.getListOfCourses(groupId, paginationArgs.offset, paginationArgs.limit);
+    }
+
+    @Override
+    public Call<MakeRequestResponse> makeRequest(String token, CourseRequestForm courseRequestForm) {
+        return fmiApi.makeRequest(token, courseRequestForm);
     }
 }

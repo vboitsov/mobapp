@@ -62,4 +62,17 @@ public class Day implements BasicEntity {
     public ArrayList<Lesson> getLessons() {
         return lessons;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "dayId=" + dayId +
+                ", groupId=" + groupId +
+                ", teacherId=" + teacherId +
+                ", dayName='" + dayName + '\'' +
+                ", dayDate='" + dayDate + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", lessons=" + lessons +
+                '}';
+    }
 }

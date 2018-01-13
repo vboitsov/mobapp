@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.courselist.impl.CoursesListFragmentImpl">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_courses_list"
+        android:layout_above="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_accept_courses"
+        app:srcCompat="@drawable/ic_add_middle_white_24dp"
+        android:layout_alignBottom="@id/recycler_view_courses_list"
+        android:layout_alignRight="@id/recycler_view_courses_list"
+        app:backgroundTint="#1565C0"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

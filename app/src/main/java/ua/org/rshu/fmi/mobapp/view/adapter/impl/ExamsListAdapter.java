@@ -27,7 +27,7 @@ public class ExamsListAdapter extends RecyclerView.Adapter<ExamsListAdapter.Exam
 
     private ExamsListFragment mExamsListFragment;
 
-    private List<Exam> mCredits = new ArrayList<>();
+    private List<Exam> mExams = new ArrayList<>();
 
     private ExamsListPresenter mCreditsListPresenter;
 
@@ -44,30 +44,39 @@ public class ExamsListAdapter extends RecyclerView.Adapter<ExamsListAdapter.Exam
 
     @Override
     public void onBindViewHolder(ExamViewHolder holder, int position) {
-        Exam exam = mCredits.get(position);
+        Exam exam = mExams.get(position);
 
-//        holder.creditNameTextView.setText(exam.getExamName());
-//        holder.teacherNameTextView.setText(exam.getTeacherName());
-//        holder.examDateTextView.setText(exam.getDate());
+        holder.examNameTextView.setText(exam.getExamName());
+        holder.examDateTextView.setText(exam.getExamDate());
+        holder.examTimeTextView.setText(exam.getExamTime());
+        holder.audienceTextView.setText(exam.getExamAudience());
+        holder.groupNameTextView.setText(exam.getGroupName());
+        holder.teacherNameTextView.setText(exam.getTeacherName());
     }
 
     @Override
     public int getItemCount() {
-        return mCredits.size();
+        return mExams.size();
     }
 
     @Override
     public void setData(List<Exam> data) {
-        mCredits = data;
+        mExams = data;
     }
 
     class ExamViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_title_exam) TextView creditNameTextView;
+        @BindView(R.id.tv_credit_name) TextView examNameTextView;
 
         @BindView(R.id.tv_teacher_name) TextView teacherNameTextView;
 
         @BindView(R.id.tv_exam_date) TextView examDateTextView;
+
+        @BindView(R.id.tv_group_name) TextView groupNameTextView;
+
+        @BindView(R.id.tv_audience) TextView audienceTextView;
+
+        @BindView(R.id.tv_exam_time) TextView examTimeTextView;
 
         ExamViewHolder(View itemView) {
             super(itemView);

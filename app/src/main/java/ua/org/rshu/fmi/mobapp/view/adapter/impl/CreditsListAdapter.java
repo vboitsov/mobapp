@@ -13,21 +13,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ua.org.rshu.fmi.mobapp.R;
-import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Exam;
+import ua.org.rshu.fmi.mobapp.persistent.fmipersistent.entity.Credit;
 import ua.org.rshu.fmi.mobapp.view.adapter.DataPostSetAdapter;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.CreditsListFragment;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.CreditsListPresenter;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core.CreditsListFragment;
+import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.creditslist.core.CreditsListPresenter;
 
 
 /**
  * @author Vadim Boitsov <vadimboitsov1@gmail.com>
  */
 
-public class CreditsListAdapter extends RecyclerView.Adapter<CreditsListAdapter.CreditViewHolder> implements DataPostSetAdapter<Exam> {
+public class CreditsListAdapter extends RecyclerView.Adapter<CreditsListAdapter.CreditViewHolder> implements DataPostSetAdapter<Credit> {
 
     private CreditsListFragment mCreditsListFragment;
 
-    private List<Exam> mCredits = new ArrayList<>();
+    private List<Credit> mCredits = new ArrayList<>();
 
     private CreditsListPresenter mCreditsListPresenter;
 
@@ -38,16 +38,16 @@ public class CreditsListAdapter extends RecyclerView.Adapter<CreditsListAdapter.
 
     @Override
     public CreditViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_exam, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_credit, parent, false);
         return new CreditViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(CreditViewHolder holder, int position) {
-        Exam exam = mCredits.get(position);
-
-        holder.creditNameTextView.setText(exam.getExamName());
-        holder.teacherNameTextView.setText(exam.getTeacherName());
+        Credit credit = mCredits.get(position);
+        holder.creditNameTextView.setText(credit.getCreditName());
+        holder.teacherNameTextView.setText(credit.getGroupName());
+        holder.groupNameTextView.setText(credit.getTeacherName());
     }
 
     @Override
@@ -56,15 +56,17 @@ public class CreditsListAdapter extends RecyclerView.Adapter<CreditsListAdapter.
     }
 
     @Override
-    public void setData(List<Exam> data) {
+    public void setData(List<Credit> data) {
         mCredits = data;
     }
 
     class CreditViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_title_exam) TextView creditNameTextView;
+        @BindView(R.id.tv_credit_name) TextView creditNameTextView;
 
         @BindView(R.id.tv_teacher_name) TextView teacherNameTextView;
+
+        @BindView(R.id.tv_group_name) TextView groupNameTextView;
 
         CreditViewHolder(View itemView) {
             super(itemView);

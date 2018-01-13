@@ -9,7 +9,6 @@ import ua.org.rshu.fmi.mobapp.service.fmiservices.FmiService;
 import ua.org.rshu.fmi.mobapp.util.PaginationArgs;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.impl.EntitiesListWithProgressbarPresenterImpl;
-import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.core.GroupsListFragment;
 import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.core.GroupsListPresenter;
 
 /**
@@ -44,11 +43,13 @@ public class GroupsListPresenterImpl extends EntitiesListWithProgressbarPresente
             try {
                 groupsList = mFmiService.getListOfGroups(paginationArgs).execute().body();
                 isConnected = true;
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
+                if (mEntitiesListFragment == null) {
+                    return new ArrayList<>();
+                }
             }
         }
-        ((GroupsListFragment) mEntitiesListFragment).hideProgressBar();
         hideProgressBarFromMainThread();
         return groupsList;
     }

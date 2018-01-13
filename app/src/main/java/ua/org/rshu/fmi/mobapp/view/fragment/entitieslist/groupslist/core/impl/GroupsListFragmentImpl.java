@@ -2,6 +2,7 @@ package ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.groupslist.core.impl;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public abstract class GroupsListFragmentImpl extends EntitiesListWithProgressbar
         FMIApplication.getsAppComponent().inject(this);
         System.out.println("Presenter:" + (mGroupsListPresenter == null));
 
-        //        setUpToolbar();
+        setUpToolbar();
         initRecyclerView();
 
 
@@ -82,15 +83,13 @@ public abstract class GroupsListFragmentImpl extends EntitiesListWithProgressbar
         Logger.d("Recycler view is updated");
     }
 
-//    @Override
-//    public void showProgressBar() {
-//        mProgressBar.setVisibility(ProgressBar.VISIBLE);
-//    }
-//
-//    @Override
-//    public void hideProgressBar() {
-//        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-//    }
+    private void setUpToolbar() {
+        setHasOptionsMenu(true);
+        if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Вибір групи");
+        }
+    }
 
     /**
      * A method which initializes recycler view with data

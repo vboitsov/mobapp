@@ -8,6 +8,6 @@ import ua.org.rshu.fmi.mobapp.view.fragment.entitieslist.core.EntitiesListWithPr
 
 public interface ExamsListFragment extends EntitiesListWithProgressbarFragment {
 
-    long getGroupId();
+
 
 }

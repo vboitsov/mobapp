@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +50,10 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
         Teacher teacher = mTeachers.get(position);
 
         holder.teacherNameTextView.setText(teacher.getTeacherName());
-//        holder.itemView.setOnClickListener(v -> mTeacherListFragment.showTeacherSchedule(teacher));
+        holder.teacherOccupationTextView.setText(teacher.getTeacherOccupation());
+        Picasso.with(holder.teacherPicImageView.getContext()).load(teacher.getTeacherPic()).into(holder.teacherPicImageView);
 
+        holder.itemView.setOnClickListener(v -> mTeacherListFragment.showNext(teacher));
     }
 
     @Override
@@ -63,7 +68,11 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
 
     class TeacherViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_title_teacher) TextView teacherNameTextView;
+        @BindView(R.id.image_view_teacher_pic) ImageView teacherPicImageView;
+
+        @BindView(R.id.tv_teacher_name) TextView teacherNameTextView;
+
+        @BindView(R.id.tv_teacher_occupation) TextView teacherOccupationTextView;
 
         TeacherViewHolder(View itemView) {
             super(itemView);

@@ -4,22 +4,28 @@ import java.util.ArrayList;
 
 public class CourseRequestForm {
 
-    private final String email;
+    private String email;
 
-    private final String name;
+    private String phoneNumber;
 
-    private final String surname;
+    private String name;
 
-    private final String middleName;
+    private String surname;
 
-    private final Group group;
+    private String middleName;
 
-    private final ArrayList<Course> courses;
+    private Group group;
 
-    private final String status;
+    private ArrayList<Course> courses;
 
-    public CourseRequestForm(String email, String name, String surname, String middleName, Group group, ArrayList<Course> courses, String status) {
+    private String status;
+
+    public CourseRequestForm() {
+    }
+
+    public CourseRequestForm(String email, String phoneNumber, String name, String surname, String middleName, Group group, ArrayList<Course> courses, String status) {
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.name = name;
         this.surname = surname;
         this.middleName = middleName;
@@ -54,5 +60,54 @@ public class CourseRequestForm {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseRequestForm{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", group=" + group +
+                ", courses=" + courses +
+                ", status='" + status + '\'' +
+                '}';
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

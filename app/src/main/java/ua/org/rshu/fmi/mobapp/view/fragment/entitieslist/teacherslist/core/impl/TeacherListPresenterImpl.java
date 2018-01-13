@@ -44,8 +44,11 @@ public class TeacherListPresenterImpl extends EntitiesListWithProgressbarPresent
                 teacherList = mFmiService.getListOfTeachers(paginationArgs).execute().body();
                 System.out.println("load more teacher: " + teacherList);
                 isConnected = true;
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
+                if (mEntitiesListFragment == null) {
+                    return new ArrayList<>();
+                }
             }
         }
         hideProgressBarFromMainThread();
